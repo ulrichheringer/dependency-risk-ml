@@ -1,12 +1,12 @@
 # dependency-risk-ml
 
-Estima risco de regressão em atualizações de dependências com sinais de versão, impacto e cobertura de testes.
+Estimates regression risk in dependency updates from version changes, dependency impact, and test-coverage signals.
 
-## Dados
+## Data
 
-O pipeline gera dados sintéticos determinísticos localmente, identificados como sintéticos em `pipeline.py`. Nenhum dado privado ou download externo é necessário. A divisão e a semente de avaliação são descritas junto às métricas abaixo.
+Deterministic synthetic data is generated locally in `pipeline.py`. No private data or external download is required.
 
-## Instalação e execução
+## Install and run
 
 ```bash
 python -m venv .venv
@@ -18,8 +18,10 @@ python cli.py train --model model.joblib
 python cli.py predict --model model.joblib
 ```
 
-## Métricas obtidas
+## Evaluation results
 
-Seed 42: holdout estratificado de 400 atualizações sintéticas — acurácia **0,8975**, precisão **0,8844**, recall **0,8793**, F1 **0,8818**, ROC AUC **0,9706**. O rótulo deriva de uma regra probabilística sobre os próprios sinais gerados; estes números não medem risco em pacotes reais.
+With seed 42, a stratified holdout of 400 synthetic updates reached 0.8975 accuracy, 0.8844 precision, 0.8793 recall, 0.8818 F1, and 0.9706 ROC AUC. The target label is generated from a probabilistic rule over the same synthetic signals, so these scores do not measure risk for real packages.
 
-Limitação: dados e regras de geração simplificados; antes de uso real, substitua-os por dados com licença e proveniência adequadas e valide fora da amostra.
+## Limitations
+
+The examples and risk labels are artificial. Real use would require dependency-update history with reliable outcomes and validation on updates that were not used for training.
